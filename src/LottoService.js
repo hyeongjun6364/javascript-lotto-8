@@ -15,11 +15,12 @@ class LottoService {
   }
 
   #setLottos(count) {
-    this.#lottos = new Array(count).fill().map(() => new Lotto(this.#randomLottoNumbers()));
+    this.#lottos = new Array(count).fill().map(() => new Lotto(this.#sortRandomLottoNumbers()));
   }
 
-  #randomLottoNumbers() {
-    return MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+  #sortRandomLottoNumbers() {
+    const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    return randomNumbers.sort((a, b) => a - b);
   }
 
   getLottos() {
