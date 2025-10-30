@@ -10,3 +10,5 @@ export const OUTPUT_MESSAGES = Object.freeze({
   winningResultMessage: (rank, count, prize) => `${rank}개 일치 (${prize}원) - ${count}개`,
   totalEarningRate: (rate) => `총 수익률은 ${rate}%입니다.`,
 });
+
+export const LOTTO_PRICE = 1000;
