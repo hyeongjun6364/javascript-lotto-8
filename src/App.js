@@ -6,6 +6,8 @@ class App {
   async run() {
     const purchaseMoney = await InputView.userInput(INPUT_MESSAGES.purchaseInput);
     const lottoCount = LottoService.countLottos(purchaseMoney);
+    const lottoService = new LottoService(lottoCount);
+    const lottos = lottoService.getLottos();
   }
 }
 
