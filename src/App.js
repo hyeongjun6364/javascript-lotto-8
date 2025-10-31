@@ -20,6 +20,7 @@ class App {
     const winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumberInput);
 
     const statistics = new LottoStatistics(lottos, winningNumbers);
+    statistics.calculateRank();
   }
 }
 
