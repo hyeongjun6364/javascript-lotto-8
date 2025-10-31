@@ -20,3 +20,12 @@ export const RANK_INFO = Object.freeze([
   { rank: 4, text: '4개 일치', prize: 50000, prizeText: '50,000' },
   { rank: 5, text: '3개 일치', prize: 5000, prizeText: '5,000' },
 ]);
+
+export const ERROR_MESSAGES = Object.freeze({
+  invalidMoneyNumber: `${ERROR_PREFIX} 구입금액은 숫자여야 합니다.`,
+  invalidMoneyUnit: `${ERROR_PREFIX} 구입금액은 1000원 단위의 숫자여야 합니다.`,
+  emptyMoneyInput: `${ERROR_PREFIX} 구입금액을 입력해주세요.`,
+  blankMoneyInput: `${ERROR_PREFIX} 구입금액은 공백만으로 이루어질 수 없습니다.`,
+});
+
+export const ERROR_PREFIX = '[ERROR] ';
