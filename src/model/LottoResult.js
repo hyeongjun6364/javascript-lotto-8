@@ -1,6 +1,6 @@
 import { RANK_INFO } from '../constants.js';
 
-class LottoStatistics {
+class LottoResult {
   #rankCounts;
   #winningNumbers;
   #lottos;
@@ -62,4 +62,4 @@ class LottoStatistics {
   }
 }
 
-export default LottoStatistics;
+export default LottoResult;
