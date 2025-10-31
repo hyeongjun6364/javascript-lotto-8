@@ -4,7 +4,7 @@ class WinningNumbers {
 
   constructor(numbers, bonusNumber) {
     this.#winningNumbers = this.parseWinningNumbers(numbers);
-    this.#bonusNumber = bonusNumber;
+    this.#bonusNumber = Number(bonusNumber);
   }
 
   parseWinningNumbers(numbers) {
