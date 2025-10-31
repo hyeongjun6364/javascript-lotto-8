@@ -1,4 +1,4 @@
-import { LOTTO_PRICE } from './constants.js';
+import { LOTTO_PRICE } from '../constants.js';
 import Lotto from './Lotto.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 

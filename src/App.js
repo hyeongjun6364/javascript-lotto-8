@@ -1,9 +1,9 @@
 import { INPUT_MESSAGES, OUTPUT_MESSAGES } from './constants.js';
 import InputView from './inputView.js';
-import LottoService from './LottoService.js';
-import LottoStatistics from './LottoStatistics.js';
+import LottoService from './model/LottoService.js';
+import LottoStatistics from './model/LottoStatistics.js';
 import OutputView from './outputView.js';
-import WinningNumbers from './WinningNumbers.js';
+import WinningNumbers from './model/WinningNumbers.js';
 
 class App {
   async run() {
