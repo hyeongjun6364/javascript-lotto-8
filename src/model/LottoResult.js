@@ -1,14 +1,18 @@
+import { RANK_INFO } from '../constants.js';
+
 class LottoStatistics {
   #rankCounts;
   #winningNumbers;
   #lottos;
   #bonusNumber;
+  #income;
 
   constructor(lottos, winningNumbers) {
     this.#winningNumbers = winningNumbers.getNumbers();
     this.#lottos = lottos;
     this.#bonusNumber = winningNumbers.getBonusNumber();
     this.#setRankCounts();
+    this.#income = 0;
   }
 
   #setRankCounts() {
@@ -37,6 +41,24 @@ class LottoStatistics {
 
   getRankCounts() {
     return this.#rankCounts;
+  }
+
+  calculateIncome() {
+    this.getRankCounts().forEach((count, rank) => {
+      RANK_INFO.find((rankInfo) => {
+        if (rankInfo.rank === rank) this.#income += count * rankInfo.prize;
+      });
+    });
+  }
+
+  calculateIncomeRate(money) {
+    this.calculateIncome();
+    const incomeRate = ((this.#income / money) * 100).toFixed(1);
+    return incomeRate;
+  }
+
+  getIncomeRate() {
+    return this.#income;
   }
 }
 
