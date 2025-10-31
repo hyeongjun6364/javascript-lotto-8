@@ -21,6 +21,7 @@ class App {
 
     const statistics = new LottoStatistics(lottos, winningNumbers);
     statistics.calculateRank();
+    OutputView.printWinningResult(statistics.getRankCounts());
   }
 }
 

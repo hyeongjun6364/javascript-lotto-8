@@ -26,6 +26,7 @@ class LottoStatistics {
       );
       const matchBonusNumber = lotto.getNumbers().includes(this.#bonusNumber);
       const matchCount = matchedNumbers.length;
+
       if (matchCount === 6) this.#rankCounts.set(1, this.#rankCounts.get(1) + 1);
       else if (matchCount === 5 && matchBonusNumber)
         this.#rankCounts.set(2, this.#rankCounts.get(2) + 1);
