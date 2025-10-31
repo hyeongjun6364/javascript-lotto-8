@@ -1,4 +1,4 @@
-import { LOTTO_PRICE } from '../constants.js';
+import { LOTTO_CONSTANTS } from '../constants.js';
 import Lotto from './Lotto.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
@@ -10,7 +10,7 @@ class LottoService {
   }
 
   static countLottos(money) {
-    const numberOfLottos = Math.floor(money / LOTTO_PRICE);
+    const numberOfLottos = Math.floor(money / LOTTO_CONSTANTS.price);
     return numberOfLottos;
   }
 
@@ -19,7 +19,11 @@ class LottoService {
   }
 
   #sortRandomLottoNumbers() {
-    const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(1, 45, 6);
+    const randomNumbers = MissionUtils.Random.pickUniqueNumbersInRange(
+      LOTTO_CONSTANTS.minLottoNumber,
+      LOTTO_CONSTANTS.maxLottoNumber,
+      LOTTO_CONSTANTS.length,
+    );
     return randomNumbers.sort((a, b) => a - b);
   }
 

@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { ERROR_MESSAGES, INPUT_MESSAGES } from './constants.js';
+import { ERROR_MESSAGES, INPUT_MESSAGES, LOTTO_CONSTANTS } from './constants.js';
 class InputView {
   winningNumbers;
 
@@ -45,7 +45,7 @@ class InputView {
     if (Number.isNaN(Number(money))) {
       throw new Error(ERROR_MESSAGES.money.invalidMoneyNumber);
     }
-    if (money % 1000 !== 0) {
+    if (money % LOTTO_CONSTANTS.price !== 0) {
       throw new Error(ERROR_MESSAGES.money.invalidMoneyUnit);
     }
     if (money.length === 0) {
@@ -60,11 +60,13 @@ class InputView {
     const parsedNumbers = numbers.split(',').map((num) => num.trim());
     const isdueplicated = new Set(parsedNumbers).size !== parsedNumbers.length;
     const isInvalidRange = parsedNumbers.some(
-      (number) => Number(number) < 1 || Number(number) > 45,
+      (number) =>
+        Number(number) < LOTTO_CONSTANTS.minLottoNumber ||
+        Number(number) > LOTTO_CONSTANTS.maxLottoNumber,
     );
     const hasEmpty = parsedNumbers.some((number) => number.trim() === '');
     const hasOtherString = !/^[\d,\s]+$/.test(numbers);
-    if (parsedNumbers.length !== 6) {
+    if (parsedNumbers.length !== LOTTO_CONSTANTS.length) {
       throw new Error(ERROR_MESSAGES.winningNumbers.invalidCount);
     }
     if (parsedNumbers.some((num) => Number.isNaN(Number(num)))) {
@@ -90,7 +92,10 @@ class InputView {
     if (Number.isNaN(Number(number))) {
       throw new Error(ERROR_MESSAGES.bonusNumber.notNumber);
     }
-    if (Number(number) < 1 || Number(number) > 45) {
+    if (
+      Number(number) < LOTTO_CONSTANTS.minLottoNumber ||
+      Number(number) > LOTTO_CONSTANTS.maxLottoNumber
+    ) {
       throw new Error(ERROR_MESSAGES.bonusNumber.invalidRange);
     }
     if (number.trim() === '') {

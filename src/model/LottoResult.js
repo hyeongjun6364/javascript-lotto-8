@@ -1,4 +1,4 @@
-import { RANK_INFO } from '../constants.js';
+import { LOTTO_CONSTANTS, RANK_INFO } from '../constants.js';
 
 class LottoResult {
   #rankCounts;
@@ -17,7 +17,7 @@ class LottoResult {
 
   #setRankCounts() {
     let rankCountMap = new Map();
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < LOTTO_CONSTANTS.rank; i++) {
       rankCountMap.set(i + 1, 0);
     }
     this.#rankCounts = rankCountMap;
@@ -31,7 +31,8 @@ class LottoResult {
       const matchBonusNumber = lotto.getNumbers().includes(this.#bonusNumber);
       const matchCount = matchedNumbers.length;
 
-      if (matchCount === 6) this.#rankCounts.set(1, this.#rankCounts.get(1) + 1);
+      if (matchCount === LOTTO_CONSTANTS.length)
+        this.#rankCounts.set(1, this.#rankCounts.get(1) + 1);
       else if (matchCount === 5 && matchBonusNumber)
         this.#rankCounts.set(2, this.#rankCounts.get(2) + 1);
       else if (matchCount >= 3 && matchCount <= 5)

@@ -11,7 +11,13 @@ export const OUTPUT_MESSAGES = Object.freeze({
   totalIncomeRate: (rate) => `총 수익률은 ${rate}%입니다.`,
 });
 
-export const LOTTO_PRICE = 1000;
+export const LOTTO_CONSTANTS = Object.freeze({
+  price: 1000,
+  minLottoNumber: 1,
+  maxLottoNumber: 45,
+  length: 6,
+  rank: 5,
+});
 
 export const RANK_INFO = Object.freeze([
   { rank: 1, text: '6개 일치', prize: 2000000000, prizeText: '2,000,000,000' },
