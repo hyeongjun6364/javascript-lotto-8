@@ -2,6 +2,7 @@ import { INPUT_MESSAGES, OUTPUT_MESSAGES } from './constants.js';
 import InputView from './inputView.js';
 import LottoService from './LottoService.js';
 import OutputView from './outputView.js';
+import WinningNumbers from './WinningNumbers.js';
 
 class App {
   async run() {
@@ -12,6 +13,10 @@ class App {
     const lottoService = new LottoService(lottoCount);
     const lottos = lottoService.getLottos();
     OutputView.printLottos(lottos);
+
+    const winningNumbersInput = await InputView.userInput(INPUT_MESSAGES.winningNumbersInput);
+    const bonusNumberInput = await InputView.userInput(INPUT_MESSAGES.bonusNumberInput);
+    const winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumberInput);
   }
 }
 
