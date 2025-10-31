@@ -6,9 +6,17 @@ export const INPUT_MESSAGES = Object.freeze({
 
 export const OUTPUT_MESSAGES = Object.freeze({
   purchaseLottoCount: (count) => `\n${count}개를 구매했습니다.`,
-  winningStatistics: '\n당첨 통계\n---',
-  winningResultMessage: (rank, count, prize) => `${rank}개 일치 (${prize}원) - ${count}개`,
+  winningStatisticsTitle: '\n당첨 통계\n---',
+  winningResultMessage: (rank, count, prize) => `${rank} (${prize}원) - ${count}개`,
   totalEarningRate: (rate) => `총 수익률은 ${rate}%입니다.`,
 });
 
 export const LOTTO_PRICE = 1000;
+
+export const RANK_INFO = Object.freeze([
+  { rank: 1, text: '6개 일치', prize: 2000000000 },
+  { rank: 2, text: '5개 일치, 보너스 볼 일치', prize: 30000000 },
+  { rank: 3, text: '5개 일치', prize: 1500000 },
+  { rank: 4, text: '4개 일치', prize: 50000 },
+  { rank: 5, text: '3개 일치', prize: 5000 },
+]);
