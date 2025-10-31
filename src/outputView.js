@@ -17,9 +17,13 @@ class OutputView {
 
     const sortedKey = Array.from(rankCounts.keys()).sort((a, b) => b - a);
     sortedKey.forEach((rank) => {
-      const { text, prize } = RANK_INFO.find((rankInfo) => rankInfo.rank === rank);
-      Console.print(OUTPUT_MESSAGES.winningResultMessage(text, rankCounts.get(rank), prize));
+      const { text, prizeText } = RANK_INFO.find((rankInfo) => rankInfo.rank === rank);
+      Console.print(OUTPUT_MESSAGES.winningResultMessage(text, rankCounts.get(rank), prizeText));
     });
+  }
+
+  static printIncomeRate(rate) {
+    Console.print(OUTPUT_MESSAGES.totalIncomeRate(rate));
   }
 }
 
