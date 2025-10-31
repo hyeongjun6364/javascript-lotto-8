@@ -15,7 +15,7 @@ class App {
     const lottos = lottoService.getLottos();
     OutputView.printLottos(lottos);
 
-    const winningNumbersInput = await InputView.userInput(INPUT_MESSAGES.winningNumbersInput);
+    const winningNumbersInput = await InputView.requestWinningNumbersInput();
     const bonusNumberInput = await InputView.userInput(INPUT_MESSAGES.bonusNumberInput);
     const winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumberInput);
 
