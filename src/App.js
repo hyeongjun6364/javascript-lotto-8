@@ -1,6 +1,7 @@
 import { INPUT_MESSAGES, OUTPUT_MESSAGES } from './constants.js';
 import InputView from './inputView.js';
 import LottoService from './LottoService.js';
+import LottoStatistics from './LottoStatistics.js';
 import OutputView from './outputView.js';
 import WinningNumbers from './WinningNumbers.js';
 
@@ -17,6 +18,8 @@ class App {
     const winningNumbersInput = await InputView.userInput(INPUT_MESSAGES.winningNumbersInput);
     const bonusNumberInput = await InputView.userInput(INPUT_MESSAGES.bonusNumberInput);
     const winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumberInput);
+
+    const statistics = new LottoStatistics(lottos, winningNumbers);
   }
 }
 
