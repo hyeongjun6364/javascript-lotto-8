@@ -81,3 +81,34 @@ describe('당첨 번호 유효성 테스트', () => {
     },
   );
 });
+
+describe('보너스 번호 유효성 테스트', () => {
+  test.each(['3', '4', '5'])('보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.', (input) => {
+    InputView.winningNumbers = '1,2,3,4,5,6';
+    expect(() => {
+      InputView.validateBonusNumberInput(input);
+    }).toThrow('[ERROR]');
+  });
+  test.each(['0', '46', '-1'])('보너스 번호가 1~45 범위를 벗어나면 예외가 발생한다.', (input) => {
+    expect(() => {
+      InputView.validateBonusNumberInput(input);
+    }).toThrow('[ERROR]');
+  });
+  test.each(['abc', '!@#$', ' '])('보너스 번호가 숫자가 아닐 때: %s', (input) => {
+    expect(() => {
+      InputView.validateBonusNumberInput(input);
+    }).toThrow('[ERROR]');
+  });
+  test.each(['', '   '])('빈 문자열 또는 공백이 들어올 때: "%s"', (input) => {
+    expect(() => {
+      InputView.validateBonusNumberInput(input);
+    }).toThrow('[ERROR]');
+  });
+
+  test.each(['7', '15', '30'])('유효한 보너스 번호: %s', (input) => {
+    InputView.winningNumbers = '1,2,3,4,5,6';
+    expect(() => {
+      InputView.validateBonusNumberInput(input);
+    }).not.toThrow();
+  });
+});
