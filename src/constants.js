@@ -36,7 +36,7 @@ export const ERROR_MESSAGES = Object.freeze({
     blankMoneyInput: `${ERROR_PREFIX} 구입금액은 공백만으로 이루어질 수 없습니다.`,
   },
   winningNumbers: {
-    invalidWinningNumbers: `${ERROR_PREFIX} 당첨 번호는 1부터 45 사이의 숫자여야 합니다.`,
+    invalidRange: `${ERROR_PREFIX} 당첨 번호는 1부터 45 사이의 숫자여야 합니다.`,
     invalidCount: `${ERROR_PREFIX} 당첨 번호는 6개여야 합니다.`,
     notNumber: `${ERROR_PREFIX} 당첨 번호는 숫자여야 합니다.`,
     notDuplicated: `${ERROR_PREFIX} 당첨 번호는 중복될 수 없습니다.`,
