@@ -66,7 +66,7 @@ class LottoResult {
     return incomeRate;
   }
 
-  getIncomeRate() {
+  getIncome() {
     return this.#income;
   }
 }
