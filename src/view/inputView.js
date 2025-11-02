@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { ERROR_MESSAGES, INPUT_MESSAGES, LOTTO_CONSTANTS } from './constants.js';
+import { ERROR_MESSAGES, INPUT_MESSAGES, LOTTO_CONSTANTS } from '../constants.js';
 class InputView {
   winningNumbers;
 

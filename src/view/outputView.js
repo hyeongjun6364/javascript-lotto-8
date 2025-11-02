@@ -1,5 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import { OUTPUT_MESSAGES, RANK_INFO } from './constants.js';
+import { OUTPUT_MESSAGES, RANK_INFO } from '../constants.js';
 
 class OutputView {
   static printMessage(message) {

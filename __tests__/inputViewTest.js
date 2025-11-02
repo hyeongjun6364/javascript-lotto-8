@@ -1,4 +1,4 @@
-import InputView from '../src/inputView';
+import InputView from '../src/view/inputView';
 
 describe('구입 금액 유효성 테스트', () => {
   test.each([1500, 20100, 3100])('구입 금액이 1000원단위가 아니라면, 예외가 발생한다.', (input) => {
