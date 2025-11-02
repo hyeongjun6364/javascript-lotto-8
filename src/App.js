@@ -1,8 +1,8 @@
 import { INPUT_MESSAGES, OUTPUT_MESSAGES } from './constants.js';
-import InputView from './inputView.js';
+import InputView from './view/inputView.js';
 import LottoService from './model/LottoService.js';
 import LottoResult from './model/LottoResult.js';
-import OutputView from './outputView.js';
+import OutputView from './view/outputView.js';
 import WinningNumbers from './model/WinningNumbers.js';
 
 class App {
@@ -20,7 +20,7 @@ class App {
     const winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumberInput);
 
     const statistics = new LottoResult(lottos, winningNumbers);
-    statistics.calculateRank();
+    statistics.updateRank();
     OutputView.printWinningResult(statistics.getRankCounts());
 
     const incomeRate = statistics.calculateIncomeRate(money);

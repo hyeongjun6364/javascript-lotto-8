@@ -23,13 +23,11 @@ class LottoResult {
     this.#rankCounts = rankCountMap;
   }
 
-  calculateRank() {
+  updateRank() {
     this.#lottos.forEach((lotto) => {
-      const matchedNumbers = this.#winningNumbers.filter((winningNumber) =>
-        lotto.getNumbers().includes(winningNumber),
-      );
-      const matchBonusNumber = lotto.getNumbers().includes(this.#bonusNumber);
-      const matchCount = matchedNumbers.length;
+      const matchedWinningNumbers = this.getMatchedWinningNumbers(lotto);
+      const matchBonusNumber = this.getMatchedBonusNumber(lotto);
+      const matchCount = matchedWinningNumbers.length;
 
       if (matchCount === LOTTO_CONSTANTS.length)
         this.#rankCounts.set(1, this.#rankCounts.get(1) + 1);
@@ -38,6 +36,16 @@ class LottoResult {
       else if (matchCount >= 3 && matchCount <= 5)
         this.#rankCounts.set(8 - matchCount, this.#rankCounts.get(8 - matchCount) + 1);
     });
+  }
+
+  getMatchedWinningNumbers(lotto) {
+    return this.#winningNumbers.filter((winningNumber) =>
+      lotto.getNumbers().includes(winningNumber),
+    );
+  }
+
+  getMatchedBonusNumber(lotto) {
+    return lotto.getNumbers().includes(this.#bonusNumber);
   }
 
   getRankCounts() {
