@@ -2,7 +2,7 @@ import { LOTTO_CONSTANTS } from '../constants.js';
 import Lotto from './Lotto.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
-class LottoService {
+class LottoMachine {
   #lottos;
 
   constructor(count) {
@@ -32,4 +32,4 @@ class LottoService {
   }
 }
 
-export default LottoService;
+export default LottoMachine;

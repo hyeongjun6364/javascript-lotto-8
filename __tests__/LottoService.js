@@ -1,4 +1,4 @@
-import LottoService from '../src/model/LottoService.js';
+import LottoMachine from '../src/model/LottoMachine.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 const mockRandoms = (numbers) => {
@@ -8,14 +8,14 @@ const mockRandoms = (numbers) => {
   }, MissionUtils.Random.pickUniqueNumbersInRange);
 };
 
-describe('LottoService 테스트', () => {
+describe('LottoMachine 테스트', () => {
   test('로또 생성 테스트', () => {
-    const lottos = new LottoService(5);
+    const lottos = new LottoMachine(5);
     expect(lottos.getLottos().length).toBe(5);
   });
 
   test('구입 금액에 따른 로또 갯수 계산 테스트', () => {
-    const lottoCount = LottoService.countLottos(1000);
+    const lottoCount = LottoMachine.countLottos(1000);
     expect(lottoCount).toBe(1);
   });
 
@@ -31,7 +31,7 @@ describe('LottoService 테스트', () => {
       [15, 20, 25, 27, 28, 30],
       [31, 32, 33, 34, 35, 40],
     ];
-    const lottos = new LottoService(3).getLottos();
+    const lottos = new LottoMachine(3).getLottos();
     lottos.forEach((lotto, index) => {
       expect(lotto.getNumbers()).toEqual(output[index]);
     });
