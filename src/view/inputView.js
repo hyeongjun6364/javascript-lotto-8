@@ -78,7 +78,7 @@ class InputView {
     const parsedNumbers = Parser(this.winningNumbers);
     const isduplicated = parsedNumbers.includes(number.trim());
 
-    if (Validator.isNotNumber(number)) throw new Error(ERROR_MESSAGES.bonusNumber.notNumber);
+    if (Number.isNaN(Number(number))) throw new Error(ERROR_MESSAGES.bonusNumber.notNumber);
     if (Validator.isOutOfRange(number)) throw new Error(ERROR_MESSAGES.bonusNumber.invalidRange);
     if (Validator.isEmpty(number)) throw new Error(ERROR_MESSAGES.bonusNumber.notEmpty);
     if (isduplicated) throw new Error(ERROR_MESSAGES.bonusNumber.notDuplicated);
