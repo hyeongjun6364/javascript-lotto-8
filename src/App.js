@@ -6,18 +6,34 @@ import WinningNumbers from './model/WinningNumbers.js';
 
 class App {
   async run() {
+    const { money, lottoCount } = await this.#purchaseLottos();
+    const { lottos } = await this.#createLottos(lottoCount);
+    const winningNumbers = await this.#getWinningNumbers();
+    this.#showResults(money, lottos, winningNumbers);
+  }
+
+  async #purchaseLottos() {
     const money = await InputView.requestMoneyInput();
     const lottoCount = LottoMachine.countLottos(money);
     OutputView.printLottoCount(lottoCount);
 
+    return { money, lottoCount };
+  }
+
+  async #createLottos(lottoCount) {
     const lottoService = new LottoMachine(lottoCount);
     const lottos = lottoService.getLottos();
     OutputView.printLottos(lottos);
+    return { lottoService, lottos };
+  }
 
+  async #getWinningNumbers() {
     const winningNumbersInput = await InputView.requestWinningNumbersInput();
     const bonusNumberInput = await InputView.requestBonusNumberInput(winningNumbersInput);
-    const winningNumbers = new WinningNumbers(winningNumbersInput, bonusNumberInput);
+    return new WinningNumbers(winningNumbersInput, bonusNumberInput);
+  }
 
+  #showResults(money, lottos, winningNumbers) {
     const statistics = new LottoResult(lottos, winningNumbers);
     statistics.updateRank();
     OutputView.printWinningResult(statistics.getRankCounts());
