@@ -9,20 +9,15 @@ class Lotto {
   }
 
   #validate(numbers) {
-    if (numbers.length !== LOTTO_CONSTANTS.length) {
-      throw new Error(ERROR_MESSAGES.lotto.notLength6);
-    }
     const numberSet = new Set(numbers);
-    if (numberSet.size !== numbers.length) {
-      throw new Error(ERROR_MESSAGES.lotto.notDuplicate);
-    }
+    if (numbers.length !== LOTTO_CONSTANTS.length) throw new Error(ERROR_MESSAGES.lotto.notLength6);
+    if (numberSet.size !== numbers.length) throw new Error(ERROR_MESSAGES.lotto.notDuplicate);
     if (
       numbers.some(
         (num) => num < LOTTO_CONSTANTS.minLottoNumber || num > LOTTO_CONSTANTS.maxLottoNumber,
       )
-    ) {
+    )
       throw new Error(ERROR_MESSAGES.lotto.notInRange);
-    }
   }
 
   getNumbers() {

@@ -1,3 +1,5 @@
+import Parser from '../util/parser.js';
+
 class WinningNumbers {
   #winningNumbers;
   #bonusNumber;
@@ -8,7 +10,8 @@ class WinningNumbers {
   }
 
   parseWinningNumbers(numbers) {
-    return numbers.split(',').map((num) => Number(num.trim()));
+    const parsedNumbers = Parser(numbers);
+    return parsedNumbers.map(Number);
   }
 
   getNumbers() {
