@@ -1,16 +1,3 @@
-export const INPUT_MESSAGES = Object.freeze({
-  purchaseInput: '구입금액을 입력해 주세요.\n',
-  winningNumbersInput: '\n당첨 번호를 입력해 주세요.\n',
-  bonusNumberInput: '\n보너스 번호를 입력해 주세요.\n',
-});
-
-export const OUTPUT_MESSAGES = Object.freeze({
-  purchaseLottoCount: (count) => `\n${count}개를 구매했습니다.`,
-  winningStatisticsTitle: '\n당첨 통계\n---',
-  winningResultMessage: (rank, count, prize) => `${rank} (${prize}원) - ${count}개`,
-  totalIncomeRate: (rate) => `총 수익률은 ${rate}%입니다.`,
-});
-
 export const LOTTO_CONSTANTS = Object.freeze({
   price: 1000,
   minLottoNumber: 1,
@@ -26,7 +13,8 @@ export const RANK_INFO = Object.freeze([
   { rank: 4, text: '4개 일치', prize: 50000, prizeText: '50,000' },
   { rank: 5, text: '3개 일치', prize: 5000, prizeText: '5,000' },
 ]);
-export const ERROR_PREFIX = '[ERROR] ';
+
+export const ERROR_PREFIX = '[ERROR]';
 
 export const ERROR_MESSAGES = Object.freeze({
   money: {

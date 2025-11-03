@@ -1,4 +1,3 @@
-import { OUTPUT_MESSAGES } from './constants.js';
 import InputView from './view/inputView.js';
 import LottoMachine from './model/LottoMachine.js';
 import LottoResult from './model/LottoResult.js';
@@ -9,7 +8,7 @@ class App {
   async run() {
     const money = await InputView.requestMoneyInput();
     const lottoCount = LottoMachine.countLottos(money);
-    OutputView.printMessage(OUTPUT_MESSAGES.purchaseLottoCount(lottoCount));
+    OutputView.printLottoCount(lottoCount);
 
     const lottoService = new LottoMachine(lottoCount);
     const lottos = lottoService.getLottos();

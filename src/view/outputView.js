@@ -1,9 +1,15 @@
 import { Console } from '@woowacourse/mission-utils';
-import { OUTPUT_MESSAGES, RANK_INFO } from '../constants.js';
+import { RANK_INFO } from '../constants.js';
 
+const OUTPUT_MESSAGES = Object.freeze({
+  purchaseLottoCount: (count) => `\n${count}개를 구매했습니다.`,
+  winningStatisticsTitle: '\n당첨 통계\n---',
+  winningResultMessage: (rank, count, prize) => `${rank} (${prize}원) - ${count}개`,
+  totalIncomeRate: (rate) => `총 수익률은 ${rate}%입니다.`,
+});
 class OutputView {
-  static printMessage(message) {
-    Console.print(message);
+  static printLottoCount(lottoCount) {
+    Console.print(OUTPUT_MESSAGES.purchaseLottoCount(lottoCount));
   }
 
   static printLottos(lottos) {
