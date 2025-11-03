@@ -1,6 +1,7 @@
 import { Console } from '@woowacourse/mission-utils';
 import { ERROR_MESSAGES, LOTTO_CONSTANTS } from '../constants.js';
 import Parser from '../util/parser.js';
+import Validator from '../util/validator.js';
 
 const INPUT_MESSAGES = Object.freeze({
   purchaseInput: '구입금액을 입력해 주세요.\n',
@@ -50,30 +51,24 @@ class InputView {
   }
 
   static validateMoneyInput(money) {
-    if (Number.isNaN(Number(money))) throw new Error(ERROR_MESSAGES.money.invalidMoneyNumber);
-
+    if (Validator.isNotNumber(money)) throw new Error(ERROR_MESSAGES.money.invalidMoneyNumber);
     if (money % LOTTO_CONSTANTS.price !== 0) throw new Error(ERROR_MESSAGES.money.invalidMoneyUnit);
-
     if (money.length === 0) throw new Error(ERROR_MESSAGES.money.emptyMoneyInput);
-
-    if (money.trim() === '') throw new Error(ERROR_MESSAGES.money.blankMoneyInput);
+    if (Validator.isEmpty(money)) throw new Error(ERROR_MESSAGES.money.blankMoneyInput);
   }
 
   static validateWinningNumbersInput(numbers) {
     const parsedNumbers = Parser(numbers);
-    const isdueplicated = new Set(parsedNumbers).size !== parsedNumbers.length;
-    const isInvalidRange = parsedNumbers.some(
-      (number) =>
-        Number(number) < LOTTO_CONSTANTS.minLottoNumber ||
-        Number(number) > LOTTO_CONSTANTS.maxLottoNumber,
-    );
-    const hasEmpty = parsedNumbers.some((number) => number.trim() === '');
+    const isInvalidRange = parsedNumbers.some((number) => Validator.isOutOfRange(number));
+    const hasEmpty = parsedNumbers.some((number) => Validator.isEmpty(number));
     const hasOtherString = !/^[\d,\s]+$/.test(numbers);
-    if (parsedNumbers.length !== LOTTO_CONSTANTS.length)
+
+    if (!Validator.isValidLength(parsedNumbers))
       throw new Error(ERROR_MESSAGES.winningNumbers.invalidCount);
-    if (parsedNumbers.some((num) => Number.isNaN(Number(num))))
+    if (parsedNumbers.some((num) => Validator.isNotNumber(num)))
       throw new Error(ERROR_MESSAGES.winningNumbers.notNumber);
-    if (isdueplicated) throw new Error(ERROR_MESSAGES.winningNumbers.notDuplicated);
+    if (Validator.isDuplicated(parsedNumbers))
+      throw new Error(ERROR_MESSAGES.winningNumbers.notDuplicated);
     if (isInvalidRange) throw new Error(ERROR_MESSAGES.winningNumbers.invalidRange);
     if (hasEmpty) throw new Error(ERROR_MESSAGES.winningNumbers.notEmpty);
     if (hasOtherString) throw new Error(ERROR_MESSAGES.winningNumbers.invalidInput);
@@ -81,18 +76,12 @@ class InputView {
 
   static validateBonusNumberInput(number) {
     const parsedNumbers = Parser(this.winningNumbers);
-    const isdueplicated = parsedNumbers.includes(number.trim());
-    if (Number.isNaN(Number(number))) throw new Error(ERROR_MESSAGES.bonusNumber.notNumber);
+    const isduplicated = parsedNumbers.includes(number.trim());
 
-    if (
-      Number(number) < LOTTO_CONSTANTS.minLottoNumber ||
-      Number(number) > LOTTO_CONSTANTS.maxLottoNumber
-    )
-      throw new Error(ERROR_MESSAGES.bonusNumber.invalidRange);
-
-    if (number.trim() === '') throw new Error(ERROR_MESSAGES.bonusNumber.notEmpty);
-
-    if (isdueplicated) throw new Error(ERROR_MESSAGES.bonusNumber.notDuplicated);
+    if (Validator.isNotNumber(number)) throw new Error(ERROR_MESSAGES.bonusNumber.notNumber);
+    if (Validator.isOutOfRange(number)) throw new Error(ERROR_MESSAGES.bonusNumber.invalidRange);
+    if (Validator.isEmpty(number)) throw new Error(ERROR_MESSAGES.bonusNumber.notEmpty);
+    if (isduplicated) throw new Error(ERROR_MESSAGES.bonusNumber.notDuplicated);
   }
 }
 
